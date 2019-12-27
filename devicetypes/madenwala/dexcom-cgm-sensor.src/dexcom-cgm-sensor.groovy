@@ -29,13 +29,10 @@ metadata {
         valueTile("temperature", "device.temperature", width: 2, height: 2) {
             state("temperature", label:'${currentValue}', unit:"F",
                 backgroundColors:[
-                    [value: 31, color: "#153591"],
-                    [value: 44, color: "#1e9cbb"],
-                    [value: 59, color: "#90d2a7"],
-                    [value: 74, color: "#44b621"],
-                    [value: 84, color: "#f1d801"],
-                    [value: 95, color: "#d04e00"],
-                    [value: 96, color: "#bc2323"]
+                    [value: 70, color: "#d04e00"],
+                    [value: 100, color: "#44b621"],
+                    [value: 180, color: "#f1d801"],
+                    [value: 300, color: "#bc2323"]
                 ]
             )
         }
@@ -78,11 +75,11 @@ def setLevel(value, rate = null) {
 }
 
 def up() {
-    setTemperature(getTemperature() + 1)
+    setTemperature(getTemperature() + 15)
 }
 
 def down() {
-    setTemperature(getTemperature() - 1)
+    setTemperature(getTemperature() - 15)
 }
 
 def setTemperature(value) {
@@ -91,6 +88,6 @@ def setTemperature(value) {
 
 private getTemperature() {
     def ts = device.currentState("temperature")
-    Integer value = ts ? ts.integerValue : 72
+    Integer value = ts ? ts.integerValue : 100
     return value
 }
